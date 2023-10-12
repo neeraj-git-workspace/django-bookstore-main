@@ -1,0 +1,51 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block title %}
+    About Us
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" style="margin-top: 2%">
+
+      <!-- Introduction Row -->
+      <h1>
+        <small style="color: teal ; margin-left: 4%">About US</small>
+      </h1>
+      <hr>
+      <div class="col-11" style="margin-left:3%">
+      <p align="justify">RecBookStore is an online book store which help us choose a personalized book based on our interest.</p>
+      <p align="justify">Whether a romantic book or a book about a famous person we provide you all. This online book store is a feature useful for peoples to get a virtual bookstore near them.  We provide books related to various genre and also recommend books based on ratings to the customer.
+      For everyone, who love books and reading, our website provides a great way to find new books, to discover authors who otherwise we would never know about. Being able to buy books online is amazing, you can find that book you had been searching for so long and purchase it only with a single click in our site.</p>
+      <P>Feel free to browse the wide collection of books we provide to you.</P>
+      </div>
+
+      <hr>
+      <!-- Team Members Row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="my-4">
+            <small style="color: teal; margin-left: 4%"> Our Team</small>
+          </h1>
+
+        </div>
+        
+        <div class="col-lg-2 col-sm-6 text-center mb-4" style="margin-left:10%">
+          <img class="rounded-circle img-fluid d-block mx-auto" src=" {% static 'img/Shahid.png' %}"alt="">
+          <h3>Shahid Ali</h3>
+
+        </div>
+        <div class="col-lg-2 col-sm-6 text-center mb-4"  style="margin-left:10%">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="{% static 'img/Varun.png' %}" alt="">
+          <h3>Varun Wadhwa</h3>
+        </div>
+        <div class="col-lg-2 col-sm-6 text-center mb-4" style="margin-left:10%">
+          <img class="rounded-circle img-fluid d-block mx-auto" src="{% static 'img/Neeraj.png' %}" alt="">
+          <h3>Neeraj Kumar</h3>
+        </div>
+      </div>
+    </div>
+
+        
+        
+
+{% endblock %}

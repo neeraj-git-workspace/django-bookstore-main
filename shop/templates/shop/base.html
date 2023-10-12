@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <link rel="icon" href="{% static 'img/icon.png' %}">
+    <title>{% block title %} BookBuzz - Online Bookstore| Home{% endblock %} </title>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css' >
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+    <style type="text/css">
+        .thumbnail p, .thumbnail h4 {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            }
+        .star-rating {
+            line-height:32px;
+            font-size:1.25em;
+           }
+        select {
+          /* Reset Select */
+          appearance: none;
+          outline: 0;
+          border: 0;
+          box-shadow: none;
+          /* Personalize */
+          flex: 1;
+          padding: 0 1em;
+          color: #000;
+          background-color: var(--darkgray);
+          background-image: none;
+          cursor: pointer;
+        }
+        /* Remove IE arrow */
+        select::-ms-expand {
+          display: none;
+        }
+        /* Custom Select wrapper */
+        .select {
+          position: relative;
+          display: flex;
+          width: 20em;
+          height: 3em;
+          border-radius: .25em;
+          overflow: hidden;
+        }
+        /* Arrow */
+        .select::after {
+          content: '\25BC';
+          position: absolute;
+          top: 0;
+          right: 0;
+          padding: 1em;
+          background-color: #34495e;
+          transition: .25s all ease;
+          pointer-events: none;
+        }
+        /* Transition */
+        .select:hover::after {
+          color: #f39c12;
+        }
+        .star-rating .fa-star{color: gold;}
+
+        .footer_section {
+          background: #2989d3;
+          color: #ffffff;
+          padding: 60px 0 15px 0;
+          position: relative;
+        }
+
+        .footer_section h4 {
+          font-weight: 600;
+          margin-bottom: 20px;
+        }
+
+        .footer_section .footer_col {
+          margin-bottom: 30px;
+        }
+
+        .footer_section .footer_contact .contact_link_box {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+              -ms-flex-direction: column;
+                  flex-direction: column;
+        }
+
+        .footer_section .footer_contact .contact_link_box a {
+          margin: 5px 0;
+          color: #ffffff;
+        }
+
+        .footer_section .footer_contact .contact_link_box a i {
+          margin-right: 5px;
+        }
+
+        .footer_section .footer_contact .contact_link_box a:hover {
+          color: #62d2a2;
+        }
+
+        .footer_section .footer_social {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+
+        .footer_section .footer_social a {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-pack: center;
+              -ms-flex-pack: center;
+                  justify-content: center;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          color: #ffffff;
+          border-radius: 100%;
+          margin-right: 10px;
+          font-size: 24px;
+        }
+
+        .footer_section .footer_social a:hover {
+          color: #62d2a2;
+        }
+
+        .footer_section .footer_links {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+        }
+
+        .footer_section .footer_links a {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+              -ms-flex-align: center;
+                  align-items: center;
+          margin-right: 15px;
+          margin-bottom: 15px;
+          color: #ffffff;
+        }
+
+        .footer_section .footer_links a:hover {
+          color: #62d2a2;
+        }
+
+        .footer_section form input {
+          border: none;
+          background-color: #fefefe;
+          width: 100%;
+          height: 45px;
+          color: #000000;
+          outline: none;
+          border-radius: 5px;
+          padding: 0 15px;
+        }
+
+        .footer_section form input::-webkit-input-placeholder {
+          color: #777;
+        }
+
+        .footer_section form input:-ms-input-placeholder {
+          color: #777;
+        }
+
+        .footer_section form input::-ms-input-placeholder {
+          color: #777;
+        }
+
+        .footer_section form input::placeholder {
+          color: #777;
+        }
+
+        .footer_section form button {
+          width: 100%;
+          text-align: center;
+          display: inline-block;
+          padding: 10px 55px;
+          background-color: #62d2a2;
+          color: #ffffff;
+          border-radius: 5px;
+          -webkit-transition: all 0.3s;
+          transition: all 0.3s;
+          border: 1px solid #62d2a2;
+          margin-top: 15px;
+        }
+
+        .footer_section form button:hover {
+          background-color: transparent;
+          color: #62d2a2;
+        }
+
+        .footer_section .footer-info {
+          text-align: center;
+        }
+
+        .footer_section .footer-info p {
+          color: #ffffff;
+          padding: 25px 0;
+          margin: 0;
+        }
+
+        .footer_section .footer-info p a {
+          color: inherit;
+        }
+        .floating-button-div {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+        }
+        .styled-table {
+          border-collapse: collapse;
+          margin: 25px 0;
+          font-size: 0.9em;
+          font-family: sans-serif;
+          min-width: 400px;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        table{
+          width:100%;
+          table-layout: fixed;
+        }
+        .tbl-header{
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 12px;
+         }
+        .tbl-content{
+          height:300px;
+          overflow-x:auto;
+          margin-top: 0px;
+          color: #000000;
+          border: 1px solid rgba(255,255,255,0.3);
+        }
+        th{
+          padding: 20px 15px;
+          text-align: left;
+          font-weight: 500;
+          font-size: 12px;
+
+          color: #000000;
+          text-transform: uppercase;
+        }
+        td{
+          padding: 15px;
+          text-align: left;
+          vertical-align:middle;
+          font-weight: 300;
+          font-size: 12px;
+
+          color: #000000;
+          border-bottom: solid 1px rgba(255,255,255,0.1);
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tbody tr {
+          border-bottom: 1px solid #dddddd;
+        }
+
+        .styled-table tbody tr:nth-of-type(even) {
+          background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+          border-bottom: 2px solid #1d7afd;
+        }
+        .styled-table tbody tr.active-row {
+          font-weight: bold;
+          color: #1d7afd;
+        }
+        .infinite-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin: 0 -10px;
+        }
+
+        .infinite-item {
+            flex: 0 0 20%;
+            max-width: 20%;
+            padding: 0 10px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .card-text {
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #183b56;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-right:5%">
+            <ul class="navbar-nav md-auto">
+                <h3 style="color: #183b56"><marquee behavior="scroll" direction="left" width="800">Welcome to the BookStore.</marquee></h3>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> {{user.username}}</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                 <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red"><i class="fas fa-shopping-cart"></i>{{ total_items }}</a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red"><i class="fas fa-shopping-cart"></i>0</a>
+                            {% endif %}
+                          {% endwith %}
+                        </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'register' %}">Register</a> </li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a> </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+   <!--  <div class="container-fluid"> -->
+    <div class="row" style="margin-top:-3%;">
+        <div class="col-1"  style="margin-top:1.9%; margin-left:5%; z-index:-5">
+            <a class="navbar-brand" href="{% url 'shop:product_list' %}"><img src="{% static 'img/img.png' %}" height="130" width="140" ></a>
+        </div>
+        <div class="col-10" style="margin-top:5%;margin-left: 2%">
+            <nav class="navbar navbar-expand-lg navbar-light rounded" style="background-color: #183b56">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'shop:product_list' %}"><i class="fas fa-home" style="color: white"></i></a></li>
+                    <li  class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="avbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white" >Books</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <ol class="list-unstyled">
+                          <li {% if not category %} class="active"{% endif %}><a class="dropdown-item" style="color:red" href="{% url 'shop:product_list' %}">All Products</a></li>
+                            {% for c in categories %}
+                              <li {% if category.slug == slug %} class="active"{% endif %}><a  class="dropdown-item" href="{{ c.get_absolute_url }}" style="color: red">{{ c.name }}</a></li>
+                            {% endfor %}
+                        </ol>
+                      </div>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li  class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="avbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white" >My Account</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <ol class="list-unstyled">
+                                <li><a class="nav-link" href="{% url 'profile' %}" style="color:red">Profile</a></li>
+                                <li> <a class="nav-link" href="{% url 'cart:cart_detail' %}" style="color: red">Cart:
+                                    {% with total_items=cart|length %}
+                                        {% if cart|length > 0 %}
+                                            {{ total_items }} item{{ total_items|pluralize }}, Rs.{{ cart.get_total_price }}
+                                        {% else %}
+                                            0 items
+                                        {% endif %}
+                                    {% endwith %}</a>
+                                </li>
+                                <li><a href="{% url 'orders:order_create' %}" class="nav-link" style="color:red"> Checkout</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" style="color:red">Logout</a></li>
+                            </ol>
+                        </div>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact:contact_detail' %}" style="color: white" >Contact</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about:about_detail' %}" style="color: white" >About Us</a></li>
+
+                </ul>
+                </div>
+                <ul class="navbar-nav ml-auto">
+                    <div class="form-inline">
+                        <div id="style" style="margin:2px">
+                            <select class="form-select" id="select_language" onchange="updateCountry()" ></select>
+                            <select class="form-select mt-2" id="select_dialect"></select>
+                        </div>
+                        <form id = "searchForm">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id = "input-search" name='search' value="{{search_term}}" size="25px">
+                            <button class="btn btn-outline-dark my-2 my-sm-0" style="color: white" value="Send" id="send" type="submit" >Search</button>
+                        </form>
+                        <button class="btn my-2 my-sm-0" id="start" style="margin-left:10px; color: white">Start</button>
+                        <button class="btn btn-danger my-2 my-sm-0" id="stop" style="display: none">Stop</button>
+                        <!-- </form>-->
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white"></nav>
+    </div>
+    <p id="status" class="lead mt-3" style="display: none; margin-left:30px; z-index:-5">Listening...</p>
+    <div class="p-3" id = "textField" style="border: 1px solid gray; width : 250px; height: 50px; border-radius: 8px; margin-top: 0px; margin-left: 45%" >
+      <span id="final"></span>
+      <span id="interim"></span>
+    </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info alert-dismissible fade show" style="width:80%; margin-left:10%; margin-top: 2%" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    {% block content %}
+    {% endblock %}
+    <hr>
+    <footer class="footer_section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-lg-3 footer_col ">
+              <h4>BookStore</h4>
+              <p>It is a virtual book library made for everyone..</p>
+              <a class="btn" href="#top"><i class="fa fa-arrow-up fa-lg"></i></a>
+            </div>
+            <div class="col-md-6 col-lg-2 mx-auto footer_col"></div>
+            <div class="col-md-6 col-lg-4 footer_col">
+              <div class="footer_contact">
+                <h4>Reach at..</h4>
+                <div class="contact_link_box">
+                  <a href="#map"><i class="fa fa-map-marker" aria-hidden="true"></i><span>Location</span></a>
+                  <a href="mailto:recBookStore12@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i><span>recBookStore12@gmail.com</span></a>
+                <a href="https://www.facebook.com/recBookStore12" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i> facebook.com/recBookStore12</a>
+                <a href="https://www.instagram.com/recBookStore12"><i class="fa fa-instagram" aria-hidden="true"></i> instagram.com/recBookStore12</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 footer_col">
+              <div class="footer_detail">
+                <h4>About</h4>
+                <p>It is a virtual book library made for everyone. It is developed to help everyone for their enjoyment.</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer-info">
+            <p>This website is made by <b>students for the people</b>.</p>
+          </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="{%static 'js/jquery.min.js'%}"></script>
+    <script type="text/javascript" src="{%static 'js/bootstrap.min.js'%}"></script>
+    <script src="{%static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{%static 'js/infinite.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function(){
+            navigator.mediaDevices.getUserMedia({audio: true})
+        });
+        const colors = ["aqua","azure","beige","bisque","black","blue","brown","chocolate","coral" /* … */,];
+        const grammar = `#JSGF V1.0; grammar colors; public <color> = ${colors.join(" | ")};`;
+
+        if ("webkitSpeechRecognition" in window) {
+            // Initialize webkitSpeechRecognition
+            let speechRecognition = new webkitSpeechRecognition();
+            let speechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList
+            let speechRecognitionList = new speechGrammarList();
+            speechRecognitionList.addFromString(grammar, 1);
+
+            // String for the Final Transcript
+            let final_transcript = "";
+
+            // Set the properties for the Speech Recognition object
+            speechRecognition.continuous = true;
+            speechRecognition.grammars = speechRecognitionList;
+            speechRecognition.interimResults = true;
+            speechRecognition.lang = document.querySelector("#select_dialect").value;;
+
+            // Callback Function for the onStart Event
+            speechRecognition.onstart = () => {
+                // Show the Status Element
+                document.querySelector("#status").style.display = "block";
+            };
+            speechRecognition.onerror = () => {
+                // Hide the Status Element
+                document.querySelector("#status").style.display = "none";
+            };
+            speechRecognition.onend = () => {
+                // Hide the Status Element
+                document.querySelector("#status").style.display = "none";
+            };
+
+            speechRecognition.onresult = (event) => {
+                // Create the interim transcript string locally because we don't want it to persist like final transcript
+                let interim_transcript = "";
+
+                // Loop through the results from the speech recognition object.
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    // If the result item is Final, add it to Final Transcript, Else add it to Interim transcript
+                    if (event.results[i].isFinal) {
+                        final_transcript += event.results[i][0].transcript;
+                    } else {
+                        interim_transcript += event.results[i][0].transcript;
+                    }
+                }
+
+                // Set the Final transcript and Interim transcript.
+                //document.querySelector("#final").innerHTML = final_transcript;
+                document.querySelector("#input-search").setAttribute("value", final_transcript);
+                document.querySelector("#interim").innerHTML = interim_transcript;
+            };
+            let start =  document.querySelector("#start");
+            // Set the onClick property of the start button
+            document.querySelector("#start").onclick = () => {
+                // Start the Speech Recognition
+                document.querySelector("#start").style.display = "none";
+                document.querySelector("#stop").style.display = "block";
+               // document.querySelector("#textField").style.display = "block";
+                speechRecognition.start();
+
+            };
+            // Set the onClick property of the stop button
+            document.querySelector("#stop").onclick = () => {
+                // Stop the Speech Recognition
+                document.querySelector("#stop").style.display = "none";
+                document.querySelector("#start").style.display = "block";
+                //document.querySelector("#textField").style.display = "none";
+                speechRecognition.stop();
+                setTimeout(function() { document.querySelector('#searchForm').submit(); }, 1000);
+            };
+        } else {
+            console.log("Speech Recognition Not Available");
+        }
+        var floatingButtonContainer = document.querySelector('.floating-button-div');
+        var scrollY = window.scrollY;
+
+
+        window.addEventListener('scroll', function() {
+          scrollY = window.scrollY;
+          floatingButtonContainer.style.top = scrollY + window.innerHeight - 150 + 'px';
+        });
+        var infinite = new Waypoint.Infinite({
+                element: $('.infinite-container')[0],
+                handler: function(direction) {
+            },
+            offset: 'bottom-in-view',
+            onBeforePageLoad: function () {
+                $('.spinner-border').show();
+            },
+            onAfterPageLoad: function () {
+                $('.spinner-border').hide();
+            }
+        });
+        var $star_rating = $('.star-rating .fa');
+        var SetRatingStar = function(){
+            return $star_rating.each(function(){
+                if (parseInt($star_rating.siblings('input.rating-value').val()) >= parseInt($(this).data('rating'))){
+                    return $(this).removeClass('fa-star-o').addClass('fa-star');
+                }else{
+                    return $(this).removeClass('fa-star').addClass('fa-star-o');
+                }
+            });
+        };
+        $star_rating.on('click', function(){
+            $star_rating.siblings('input.rating-value').val($(this).data('rating'));
+            return SetRatingStar();
+        });
+        SetRatingStar();
+        $(document).ready(function(){});
+
+        //The Watson chatbot is taken from someone else project and deserves their rights on the chat bot
+        //         MIT License
+        //Copyright (c) 2020 Smit Shah
+        //Permission is hereby granted, free of charge, to any person obtaining a copy
+        //of this software and associated documentation files (the "Software"), to deal
+        //in the Software without restriction, including without limitation the rights
+        //to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        //copies of the Software, and to permit persons to whom the Software is
+        //furnished to do so, subject to the following conditions:-->
+
+        window.watsonAssistantChatOptions = {
+            integrationID: "f7ce8b65-16de-4814-8ca3-29245808338b", // The ID of this integration.
+            region: "eu-gb", // The region your integration is hosted in.
+            serviceInstanceID: "94bcefdf-32bd-45df-9e52-da6cba4f57b7", // The ID of your service instance.
+            onLoad: function(instance) { instance.render(); }
+          };
+        setTimeout(function(){
+          const t=document.createElement('script');
+          t.src="https://web-chat.global.assistant.watson.appdomain.cloud/loadWatsonAssistantChat.js";
+          document.head.appendChild(t);
+        });
+
+        function Trychatbot(){
+            const button = document.getElementById('WACLauncher__Button');
+            button.click();
+        }
+    </script>
+    <script type="text/javascript">
+        function validateForm(){
+            var x = document.forms["ratingForm"]["rating"].value;
+            if(x=="0"){
+                alert("Please Give Correct Rating");
+                return false;
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/language.js' %}"></script>
+</body>
+</html>
+<!--function sendData(transcript){
+            final_transcript = ''
+            document.querySelector("#input-search").setAttribute("value", '');
+            $.ajax({
+                type: 'POST',
+                data: {
+                    'message': transcript
+                },
+                url: "{% url 'shop:search_ajax' %}",
+                success: function(){
+                  alert("Audio successfully Submitted");
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        }-->
